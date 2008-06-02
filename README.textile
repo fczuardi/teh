@@ -1,0 +1,21 @@
+h1. My TEH fork
+
+This is Fabricio Zuardi's personal fork of TEH
+
+h2. About TEH
+
+TEH is a minimalistic blog application written in Python that runs on top of the Google App Engine platform.
+
+Checkout "TEH's source repository": http://github.com/btbytes/teh/tree/master for the latest changes of the original code, TEH was based on "Bret Taylor's Experiment with Google App Engine":http://bret.appspot.com/entry/experimenting-google-app-engine , the samples was adapted by "Pradeep Gowda":http://pradeepgowda.com/ .
+
+h2. About this fork
+
+I am still learning Python and playing with GAE only on my free time (my day-job is mostly PHP and Actionscript). So don't expect much from this.
+
+The idea is to hack the code and make it work on a subfolder of one of my 3 app engine apps.
+
+I don't have any plans to contribute with the main branch or to improve the blog platform in any ways, I will be playing for fun only. But if eventually something useful comes from this experiments I may ask for patches-pulling eventually... I dont know. :)
+
+h2. License
+
+Since I don't know which license the 2 parent codebases use, I prefer not to make any assumptions. I would be happy to license any new work as new BSD, Apache, MIT, or any other open source compatible license that the parent projects choose. For now, just keep in mind that the base is Bret's and Prapdeep's work, so consult them first if you plan to use their code too :)
