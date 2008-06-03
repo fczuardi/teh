@@ -2,19 +2,15 @@
 {% block content %}
 {% for entry in entries %}
 	<div class="entry">
-		<h1><a href="{{entry.url}}">{{entry.title}}</a></h1>
+		<h1><a href="{{basepath|default:"."}}{{entry.url}}">{{entry.title}}</a></h1>
 		<div class="date">{{entry.published.date|date:"d M Y" }}</div>
 		<div class="body">
 			{{entry.body_html}}
 		</div><!-- body -->
-		{% if entry.comment %}
-			
-		
 		{% if config.disqus %}
 			<div class="entrycomment">
-				<a href="{{entry.url}}#disqus_thread">Comments</a>
+				<a href="{{basepath|default:"."}}{{entry.url}}#disqus_thread">Comments</a>
 			</div><!-- entrycomment -->
-		{% endif %}
 		{% endif %}
 		</div><!-- entry -->
 {% endfor %}
