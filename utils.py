@@ -5,7 +5,7 @@ from google.appengine.api import users
 import os
 import functools
 
-class Config(db.Expando):
+class TehConfig(db.Expando):
     title = db.StringProperty(required=True)
 
 class TehRequestHandler(webapp.RequestHandler):    
@@ -14,7 +14,7 @@ class TehRequestHandler(webapp.RequestHandler):
         
     def render(self, tmpl, **kw):
         template_values = dict(**kw)
-        config = Config.all()
+        config = TehConfig.all()
         config = config.fetch(1)[0]
         template_values.update({'config': config})
         template_values.update({'user': users.get_current_user()})

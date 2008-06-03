@@ -14,10 +14,10 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import users
 
 import os
-from lib import utils, markdown2, BeautifulSoup
-from utils import TehRequestHandler, administrator, Config
-import blog
-import admin
+from teh.lib import utils, markdown2, BeautifulSoup
+from teh.utils import TehRequestHandler, administrator, TehConfig
+import teh.blog
+import teh.admin
 
 
 class LoginHandler(TehRequestHandler):
@@ -26,19 +26,19 @@ class LoginHandler(TehRequestHandler):
         if not user:
             self.redirect(users.create_login_url(self.request.uri))
         else:
-            self.redirect('/')
+            self.redirect('./')
 
 class LogoutHandler(TehRequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
-            self.redirect(users.create_logout_url('/'))
+            self.redirect(users.create_logout_url('./'))
         else:
-            self.redirect('/')
+            self.redirect('./')
 
 class HomePageHandler(TehRequestHandler):
     def get(self):
-        entries = blog.Entry.all()
+        entries = teh.blog.Entry.all()
         entries.filter("static =", False)
         entries.order('-published').fetch(limit=5)
         self.render("templates/home.html", entries=entries)
@@ -46,33 +46,33 @@ class HomePageHandler(TehRequestHandler):
         
 def main():
     application = webapp.WSGIApplication([
-        (r"/", HomePageHandler),
-        (r"/login", LoginHandler),
-        (r"/logout", LogoutHandler),
+        (r"/teh/", HomePageHandler),
+        (r"/teh/login", LoginHandler),
+        (r"/teh/logout", LogoutHandler),
 
-        (r"/entries", blog.EntryIndexHandler),
-        (r"/feed", blog.FeedHandler),
-        (r"/entry/([^/]+)", blog.EntryHandler),
-        (r"/entry/([^/]+)/edit", blog.NewEntryHandler),
-        (r"/entry/([^/]+)/del", blog.EntryDeleteHandler),
-        (r"/([^/]+)/edit", blog.NewEntryHandler),
-        (r"/([^/]+)/del", blog.EntryDeleteHandler),
-        (r"/topic/([^/]+)", blog.TagHandler),
+        (r"/teh/entries", teh.blog.EntryIndexHandler),
+        (r"/teh/feed", teh.blog.FeedHandler),
+        (r"/teh/entry/([^/]+)", teh.blog.EntryHandler),
+        (r"/teh/entry/([^/]+)/edit", teh.blog.NewEntryHandler),
+        (r"/teh/entry/([^/]+)/del", teh.blog.EntryDeleteHandler),
+        (r"/teh/([^/]+)/edit", teh.blog.NewEntryHandler),
+        (r"/teh/([^/]+)/del", teh.blog.EntryDeleteHandler),
+        (r"/teh/topic/([^/]+)", teh.blog.TagHandler),
         
-        (r"/admin", admin.AdminHandler),
-        (r"/admin/new", blog.NewEntryHandler),
-        (r"/admin/config", admin.ConfigHandler),
-        (r"/admin/entrylist", admin.EntryListHandler),
+        (r"/teh/admin", teh.admin.AdminHandler),
+        (r"/teh/admin/new", teh.blog.NewEntryHandler),
+        (r"/teh/admin/config", teh.admin.ConfigHandler),
+        (r"/teh/admin/entrylist", teh.admin.EntryListHandler),
 
        # (r"/shooin/([^/]+)", shooin.ShooinHandler),
-        (r"/([^/]+)", blog.PageHandler),
+        (r"/teh/([^/]+)", teh.blog.PageHandler),
         ], debug=True)
     
-    config = Config.all()
+    config = TehConfig.all()
     if config.count() > 0:
         config = config.fetch(1)[0]
     else: 
-        config1 = Config(title="TEH Blog")
+        config1 = TehConfig(title="TEH Blog")
         config1.put()
        
     wsgiref.handlers.CGIHandler().run(application)

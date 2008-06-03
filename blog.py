@@ -14,8 +14,8 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import users
 import functools
 import os
-from lib import utils, markdown2, BeautifulSoup,textile
-from utils import TehRequestHandler, administrator
+from teh.lib import utils, markdown2, BeautifulSoup, textile
+from teh.utils import TehRequestHandler, administrator
 
 
 class Entry(db.Model):
@@ -52,26 +52,28 @@ class EntryHandler(TehRequestHandler):
         entry = db.Query(Entry).filter("slug =", slug).filter("static = ", False).get()
         if not entry:
             raise webapp.Error(404)
-        self.render("templates/entry.html", entry=entry)
+        self.render("templates/entry.html", entry=entry, basepath='..')
         
 class EntryDeleteHandler(TehRequestHandler):
         @administrator
         def get(self,slug):
+            basepath='../..'
             entry = db.Query(Entry).filter("slug =", slug).get()
             if not entry:
                 raise webapp.Error(404)
 
-            self.render("templates/del.html", entry=entry)
+            self.render("templates/del.html", entry=entry, basepath=basepath)
 
         @administrator
         def post(self,slug):
+            basepath='../..'
             entry = db.Query(Entry).filter("slug =", slug).get()
             if not entry:
                 raise webapp.Error(404)
             delete = self.request.get("del")
             if delete and delete.upper() == 'Y':
                 entry.delete()
-            self.redirect('/entries')
+            self.redirect(basepath + '/entries')
                 
 class PageHandler(TehRequestHandler):
     def get(self, slug):
@@ -87,7 +89,7 @@ class TagHandler(TehRequestHandler):
         message = 'Entries belonging to tag `%s`' %(slug, )
         if not entries:
             raise webapp.Error(404)
-        self.render("templates/entryindex.html", entries=entries, message=message)
+        self.render("templates/entryindex.html", entries=entries, message=message, basepath='..')
         
 
 class FeedHandler(TehRequestHandler):
@@ -115,11 +117,12 @@ def to_html(body,markdown):
 class NewEntryHandler(TehRequestHandler):
     @administrator
     def get(self,slug=None):
+        basepath='../..'
         if slug:
             entry = db.Query(Entry).filter("slug =", slug).get()
             if not entry:
                 raise webapp.Error(404)
-            self.render("templates/entry_edit.html", entry=entry)
+            self.render("templates/entry_edit.html", entry=entry, basepath=basepath)
         else: self.render("templates/entry_edit.html")
         
     @administrator
@@ -151,6 +154,7 @@ class NewEntryHandler(TehRequestHandler):
         
         entry = db.Query(Entry).filter("slug =", slug).get()
         if not entry:
+            basepath='..'
             entry = Entry(
                 author=users.get_current_user(),
                 title=title,
@@ -164,6 +168,7 @@ class NewEntryHandler(TehRequestHandler):
                 comments=comments,
             )
         else:
+            basepath='../..'
             entry.title = title
             entry.body = body
             entry.body_html = body_html
@@ -172,4 +177,4 @@ class NewEntryHandler(TehRequestHandler):
             entry.tags = tags
             entry.comments = comments
         entry.put()
-        self.redirect(entry.url())
+        self.redirect(basepath + entry.url())

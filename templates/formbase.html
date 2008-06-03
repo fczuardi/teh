@@ -15,21 +15,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <!-- CSS -->
-<link rel="stylesheet" href="/static/css/forms/dynamic.css" type="text/css" />
+<link rel="stylesheet" href="{{basepath|default:".."}}/static/css/forms/dynamic.css" type="text/css" />
 
 <!-- JavaScript -->
-<script type="text/javascript" src="/static/scripts/dynamic.js"></script>
+<script type="text/javascript" src="{{basepath|default:".."}}/static/scripts/dynamic.js"></script>
 </head>
 
 <body id="public">
 
-<img id="top" src="/static/images/top.png" alt="" />
+<img id="top" src="{{basepath|default:".."}}/static/images/top.png" alt="" />
 <div id="container">
-<h1><a href="/admin" title="Admin home">Admin Home</a></h1>
+<h1><a href="{{basepath|default:".."}}/admin" title="Admin home">Admin Home{{ foo }}</a></h1>
 {% block content %}
 
 {% endblock %}
 </div><!--container-->
-<img id="bottom" src="/static/images/bottom.png" alt="" />
+<img id="bottom" src="{{basepath|default:".."}}/static/images/bottom.png" alt="" />
 </body>
 </html>

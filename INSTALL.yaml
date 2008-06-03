@@ -1,0 +1,38 @@
+# HOWTO INSTALL THIS BLOG
+
+########################################################################
+# Option 1: as a subdirectory (/teh) of your google app engine app
+#
+#  * Copy the handlers below to your existing app.yaml file 
+#   above your current handlers:
+#  * Uncomment the handlers
+#
+# - url: /teh/static
+#   static_dir: teh/static
+# - url: /teh.*
+#   script: teh/webapp.py
+# - url: /teh/new
+#   script: teh/webapp.py
+#   login: admin
+
+
+########################################################################
+# Option 2: in the root of a google app engine app
+#
+#  * change the application name
+#  * rename this file to app.yaml
+#  * uncomment all lines below
+#
+# application: teh
+# version: 1
+# runtime: python
+# api_version: 1
+# 
+# handlers:
+# - url: /static
+#   static_dir: static
+# - url: /.*
+#   script: webapp.py
+# - url: /new
+#   script: webapp.py
+#   login: admin

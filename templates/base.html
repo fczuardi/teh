@@ -8,22 +8,22 @@
 	{% endblock %}
 </title>
 {% block css %}
-	<link href="/static/css/blueprint/screen.css" rel="stylesheet" type="text/css"/>
-	<link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+	<link href="{{basepath|default:"."}}/static/css/blueprint/screen.css" rel="stylesheet" type="text/css"/>
+	<link href="{{basepath|default:"."}}/static/css/base.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 {% block extracss %} {% endblock %}
 {% block extrajs %} {% endblock %}
-<link rel="alternate" href="http://teh.appspot.com/feed" type="application/atom+xml" title="Teh blog"/>
+<link rel="alternate" href="{{basepath|default:"."}}/feed" type="application/atom+xml" title="Teh blog"/>
 </head>
 
 <body>
 <div id="header">
 	<div id="logo">
-		<a href="/" id="sitetitle">
+		<a href="{{basepath|default:"."}}/" id="sitetitle">
 			{{config.title}}</a> 
 	</div><!-- logo -->
-	<div id="feed"><a href="http://teh.appspot.com/feed">
-		<img src="/static/images/feed.png" alt="Subscribe to this blog"/></a>
+	<div id="feed"><a href="{{basepath|default:"."}}/feed">
+		<img src="{{basepath|default:"."}}/static/images/feed.png" alt="Subscribe to this blog"/></a>
 	</div><!-- feed -->
 
 	<div id="search">
@@ -51,26 +51,26 @@
 </div>
 <div class="span-7 last">
 	<ul>
-	<li><a href="/about">About</a></li>
-	<li><a href="/docs">Documentation</a></li>
-	<li><a href="/feed">Blog Feed</a></li>
+	<li><a href="{{basepath|default:"."}}/about">About</a></li>
+	<li><a href="{{basepath|default:"."}}/docs">Documentation</a></li>
+	<li><a href="{{basepath|default:"."}}/feed">Blog Feed</a></li>
 	</ul>
 <h3>Meta</h3>
 <p><small>Login required</small></p>
 <ul>
-<li><a href="/new">New Entry</li>
-<li><a href="/config">Blog Config</li>	
+<li><a href="{{basepath|default:"."}}/admin/new">New Entry</li>
+<li><a href="{{basepath|default:"."}}/admin/config">Blog Config</li>	
 </ul>
 	
 </div>
 
 </div><!-- full -->
 
-<div class="container"><a href="/entries">All posts</a></div>
+<div class="container"><a href="{{basepath|default:"."}}/entries">All posts</a></div>
 </div><!-- body -->
 <hr>
 <div id="footer" class="container">
-	&copy;2008 Teh blog - <a href="/about">About Teh</a> - <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons License</a>
+	&copy;2008 Teh blog - <a href="{{basepath|default:"."}}/about">About Teh</a> - <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons License</a>
 	{% block extrafooter %}
 		
 	{% endblock %}

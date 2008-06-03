@@ -4,13 +4,13 @@
 <h2>Blog entries</h2>
 <ul>
 {% for entry in entries %}
-	<li><a href="{{entry.url}}">{{entry.title}}</a></li>
+	<li><a href="{{basepath|default:"."}}{{entry.url}}">{{entry.title}}</a></li>
 {% endfor %}
 </ul>
 <h2>Static pages</h2>
 <ul>
 {% for page in pages %}
-	<li><a href="{{page.url}}">{{page.title}}</a></li>
+	<li><a href="{{basepath|default:"."}}{{page.url}}">{{page.title}}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}

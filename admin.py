@@ -12,12 +12,12 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
-from utils import TehRequestHandler, administrator
+from teh.utils import TehRequestHandler, administrator, TehConfig
 
 class AdminHandler(TehRequestHandler):
     @administrator
     def get(self):
-        self.render("templates/admin.html")
+        self.render("templates/admin.html", basepath='.')
 
 class EntryListHandler(TehRequestHandler):
     @administrator
@@ -30,10 +30,10 @@ class ConfigHandler(TehRequestHandler):
         self.render("templates/config.html")
     @administrator    
     def post(self):
-        config = Config.all()
+        config = TehConfig.all()
         config = config.fetch(1)[0]
         config.title = self.request.get("title")
         config.disqus = self.request.get("disqus")
         config.put()
-        self.redirect('/')
+        self.redirect('../admin')
 

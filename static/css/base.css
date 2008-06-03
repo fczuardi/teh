@@ -43,7 +43,7 @@ form {
 }
 
 #header {
-  background-image: url("/static/images/top-bar.png");
+  background-image: url("../images/top-bar.png");
   background-repeat: repeat-x;
   height: 56px;
   position: relative;
@@ -132,7 +132,7 @@ h1 a, h1 a:visited, h2 a, h2 a:visited{
 .full .entry .footer .share {
   color: #25833e;
   padding-left: 21px;
-  background: url("/static/images/share.png");
+  background: url("../images/share.png");
   text-decoration: underline;
   cursor: pointer;
 }

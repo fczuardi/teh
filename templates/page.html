@@ -4,21 +4,21 @@
 {% endblock %}
 {% block content %}
 <div class="entry">
-	<h1><a href="{{entry.url}}">{{entry.title}}</a></h1>
+	<h1><a href="{{basepath|default:"."}}{{entry.url}}">{{entry.title}}</a></h1>
 	{% block date %}{% endblock %}
 <div class="body">
 	
 	{{entry.body_html}}
 <div class="tags">
 	{% for tag in entry.tags %}
-		<a href="/topic/{{tag}}">{{tag}}</a>, 
+		<a href="{{basepath|default:"."}}/topic/{{tag}}">{{tag}}</a>, 
 	{% endfor %}
 </div><!-- tags -->
 </div><!-- body -->
 <div id="disqus_thread"></div>
 <div id="controls">
 	{% if users.is_current_user_admin %}
-	<a href="{{entry.url}}/edit">edit</a> | <a href="{{entry.url}}/del">delete</a>
+	<a href="{{basepath|default:"."}}{{entry.url}}/edit">edit</a> | <a href="{{basepath|default:"."}}{{entry.url}}/del">delete</a>
 	{% endif %}
 </div><!-- controls -->
 </div><!-- entry -->
