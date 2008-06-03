@@ -1,4 +1,4 @@
-h1. My TEH fork
+h1. FCZ TEH fork
 
 This is Fabricio Zuardi's personal fork of TEH
 
@@ -18,7 +18,35 @@ I don't have any plans to contribute with the main branch or to improve the blog
 
 h2. License
 
-Since I don't know which license the 2 parent codebases use, I prefer not to make any assumptions. I would be happy to license any new work as new BSD, Apache, MIT, or any other open source compatible license that the parent projects choose. For now, just keep in mind that the base is Bret's and Prapdeep's work, so consult them first if you plan to use their code too :)
+The original TEH code is Licensed under the GPL v.3, and so is this fork:
+
+*FCZ TEH fork - Fabricio Zuardi's personal fork of TEH*
+
+_Copyright (C) 2008  Pradeep Gowda, Fabricio Zuardi_
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see "http://www.gnu.org/licenses/":http://www.gnu.org/licenses/.
+
+Pradeep Gowda's Contacts:
+
+* "Website":http://pradeepgowda.com/
+* "Contact":http://pradeepgowda.com/contact.html
+
+Fabricio Zuardi's Contacts:
+
+* "Website":http://fabricio.org/
+* "Email":mailto:fabricio@gmail.com
+
 
 [1]http://github.com/btbytes/teh/tree/master
 [2]http://bret.appspot.com/entry/experimenting-google-app-engine
